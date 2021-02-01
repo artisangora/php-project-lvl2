@@ -1,7 +1,8 @@
 {
     "name": "hexlet/code",
     "require": {
-        "docopt/docopt": "^1.0"
+        "docopt/docopt": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -13,11 +14,14 @@
     ],
     "autoload": {
         "files": [
-            "src/Cli.php"
+            "src/Cli.php",
+            "src/DiffGenerator.php"
         ]
     },
     "autoload-dev": {
-        "psr-4": {}
+        "psr-4": {
+            "Differ\\Tests\\": "tests/"
+        }
     },
     "scripts": {
         "linter": "phpcs -- --standard=PSR12 src bin"
