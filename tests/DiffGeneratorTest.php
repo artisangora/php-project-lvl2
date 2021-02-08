@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 use function Differ\DiffGenerator\genDiff;
 
-
 class DiffGeneratorTest extends TestCase
 {
     /**
@@ -23,7 +22,6 @@ class DiffGeneratorTest extends TestCase
         $expects = file_get_contents(__DIR__ . '/data/result.txt');
         $this->assertNotEmpty($expects);
         $this->assertEquals($expects, $diff);
-
     }
 
     public function filesProvider(): iterable

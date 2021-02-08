@@ -1,8 +1,11 @@
 {
     "name": "hexlet/code",
+    "license": "GPL-3.0-only",
+    "description": "Hexlet project #2",
     "require": {
         "docopt/docopt": "^1.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "funct/funct": "^1.5"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -15,7 +18,8 @@
     "autoload": {
         "files": [
             "src/Cli.php",
-            "src/DiffGenerator.php"
+            "src/DiffGenerator.php",
+            "src/Render.php"
         ]
     },
     "autoload-dev": {

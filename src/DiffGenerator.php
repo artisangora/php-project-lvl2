@@ -2,7 +2,8 @@
 
 namespace Differ\DiffGenerator;
 
-const TEMPLATE = '  %s %s: %s';
+use function Differ\Render\render;
+
 const SYMBOL_REMOVED = '-';
 const SYMBOL_ADDED = '+';
 const SYMBOL_NOT_CHANGED = ' ';
@@ -15,13 +16,6 @@ function genDiff(string $pathToFile1, string $pathToFile2): string
     $diff = diff($fileData1, $fileData2);
 
     return render($diff);
-}
-
-function render(array $diff): string
-{
-    $result = array_map(static fn(array $row): string => renderDiffRow($row), $diff);
-
-    return "{\n" . implode("\n", $result) . "\n}";
 }
 
 function diff(array $data1, array $data2): array
@@ -49,14 +43,9 @@ function diff(array $data1, array $data2): array
     return $diff;
 }
 
-function createDiffRow(string $symbol, string $key, string $value): array
+function createDiffRow(string $symbol, string $key, $value): array
 {
     return ['symbol' => $symbol, 'key' => $key, 'value' => $value];
-}
-
-function renderDiffRow(array $diffRow): string
-{
-    return sprintf(TEMPLATE, $diffRow['symbol'], $diffRow['key'], $diffRow['value']);
 }
 
 function loadData(string $path): array
