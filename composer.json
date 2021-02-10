@@ -28,8 +28,5 @@
         "psr-4": {
             "Differ\\Tests\\": "tests/"
         }
-    },
-    "scripts": {
-        "linter": "phpcs -- --standard=PSR12 src bin"
     }
 }

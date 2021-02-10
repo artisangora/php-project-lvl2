@@ -19,7 +19,7 @@ class DiffGeneratorTest extends TestCase
         $this->assertFileExists($path2);
         $diff = genDiff($path1, $path2);
 
-        $expects = file_get_contents(__DIR__ . '/data/result.txt');
+        $expects = file_get_contents(__DIR__ . '/fixtures/result.txt');
         $this->assertNotEmpty($expects);
         $this->assertEquals($expects, $diff);
     }
@@ -27,6 +27,6 @@ class DiffGeneratorTest extends TestCase
     public function filesProvider(): iterable
     {
 //        yield 'relative' => ['path1' => 'data/file1.json', 'path2' => 'data/file2.json']; //todo
-        yield 'absolute' => ['path1' => __DIR__ . '/data/file1.json', 'path2' => __DIR__ . '/data/file2.json'];
+        yield 'absolute' => ['path1' => __DIR__ . '/fixtures/file1.json', 'path2' => __DIR__ . '/fixtures/file2.json'];
     }
 }

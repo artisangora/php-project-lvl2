@@ -1,0 +1,36 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '!*' # Do not execute on tags
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        # Action gives to setup the PHP environment to test application
+        # https://github.com/shivammathur/setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          # Specify the PHP version
+          php-version: '7.4'
+      - name: Install
+        run: make install
+
+      - name: Run linter
+        run: make lint
+
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          coverageLocations: ${{ github.workplace }}/build/logs/clover.xml:clover
+          debug: true
