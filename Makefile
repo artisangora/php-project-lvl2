@@ -4,13 +4,12 @@ validate:
 	composer validate
 
 lint:
-	composer run-script linter
+	./vendor/bin/phpcs --standard=PSR12 src bin
 test:
-	./vendor/bin/phpunit tests
+	./vendor/bin/phpunit -c phpunit.xml.dist
+test-coverage:
+	./vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
 
 php:
 	docker-compose -f docker-compose-dev.yml up -d --build
 	docker-compose -f docker-compose-dev.yml exec php-cli bash
-
-gendiff:
-	./bin/gendiff

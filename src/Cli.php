@@ -4,6 +4,8 @@ namespace Differ\Cli;
 
 use Docopt;
 
+use function Differ\DiffGenerator\genDiff;
+
 const DOC =  <<<DOC
 Generate diff
 
@@ -19,6 +21,12 @@ Options:
 DOC;
 
 
-function run(): void {
-    Docopt::handle(DOC);
+function run(): void
+{
+    $arguments = Docopt::handle(DOC, ['version' => 'Generate diff 1.0.0']);
+
+    $pathToFile1 = $arguments['<firstFile>'];
+    $pathToFile2 = $arguments['<secondFile>'];
+
+    echo genDiff($pathToFile1, $pathToFile2);
 }

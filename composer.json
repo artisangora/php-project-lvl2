@@ -1,8 +1,10 @@
 {
-    "name": "hexlet/code",
+    "name": "artisangora/php-project-lvl2",
     "license": "GPL-3.0-only",
+    "type": "project",
     "description": "Hexlet project #2",
     "require": {
+        "php": "^7.4|^8.0",
         "docopt/docopt": "^1.0",
         "ext-json": "*",
         "funct/funct": "^1.5"
@@ -13,7 +15,7 @@
         "phpunit/phpunit": "^9.5"
     },
     "bin": [
-        "gendiff"
+        "bin/gendiff"
     ],
     "autoload": {
         "files": [
@@ -26,8 +28,5 @@
         "psr-4": {
             "Differ\\Tests\\": "tests/"
         }
-    },
-    "scripts": {
-        "linter": "phpcs -- --standard=PSR12 src bin"
     }
 }
