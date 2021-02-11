@@ -7,4 +7,5 @@
 `composer global require artisangora/php-project-lvl2`
 
 
-# @TODO ADD ASCIINEMA
+# @TODO ADD ASCIINEMA STEP3
+# @TODO ADD ASCIINEMA STEP5

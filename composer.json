@@ -7,7 +7,8 @@
         "php": "^7.4|^8.0",
         "docopt/docopt": "^1.0",
         "ext-json": "*",
-        "funct/funct": "^1.5"
+        "funct/funct": "^1.5",
+        "symfony/yaml": "^5.2"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -21,7 +22,8 @@
         "files": [
             "src/Cli.php",
             "src/DiffGenerator.php",
-            "src/Render.php"
+            "src/Render.php",
+            "src/Parsers.php"
         ]
     },
     "autoload-dev": {

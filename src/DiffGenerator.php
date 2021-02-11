@@ -2,6 +2,7 @@
 
 namespace Differ\DiffGenerator;
 
+use function Differ\Parsers\parseData;
 use function Differ\Render\render;
 use function Funct\Collection\sortBy;
 
@@ -9,10 +10,10 @@ const SYMBOL_REMOVED = '-';
 const SYMBOL_ADDED = '+';
 const SYMBOL_NOT_CHANGED = ' ';
 
-function genDiff(string $pathToFile1, string $pathToFile2): string
+function genDiff(string $pathToFile1, string $pathToFile2, string $format): string
 {
-    $fileData1 = parseFile($pathToFile1);
-    $fileData2 = parseFile($pathToFile2);
+    $fileData1 = parseData(loadFile($pathToFile1), $format);
+    $fileData2 = parseData(loadFile($pathToFile2), $format);
 
     $diff = diff($fileData1, $fileData2);
 
@@ -47,8 +48,7 @@ function createDiffRow(string $symbol, string $key, $value): array
     return ['symbol' => $symbol, 'key' => $key, 'value' => $value];
 }
 
-function parseFile(string $path): array
+function loadFile(string $filePath): string
 {
-    $content = file_get_contents($path);
-    return json_decode($content, true);
+    return file_get_contents($filePath);
 }
