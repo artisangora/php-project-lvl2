@@ -10,7 +10,7 @@ const SYMBOL_REMOVED = '-';
 const SYMBOL_ADDED = '+';
 const SYMBOL_NOT_CHANGED = ' ';
 
-function genDiff(string $pathToFile1, string $pathToFile2, string $format): string
+function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'stylish'): string
 {
     $fileData1 = parseData(loadFile($pathToFile1), $format);
     $fileData2 = parseData(loadFile($pathToFile2), $format);
