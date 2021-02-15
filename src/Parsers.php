@@ -4,16 +4,29 @@ namespace Differ\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-const FORMAT_JSON = 'json';
-const FORMAT_YAML = 'yaml';
+const EXTENSION_JSON = 'json';
+const EXTENSION_YAML = 'yml';
 
-function parseData(string $content, string $format): array
+/**
+ * @param string $content
+ * @param string $extension
+ * @return mixed
+ * @throws \JsonException
+ */
+function parseData(string $content, string $extension)
 {
-    switch ($format) {
-        case FORMAT_JSON:
-            return json_decode($content, true, 512, JSON_THROW_ON_ERROR);
-        case FORMAT_YAML:
-            return (array)Yaml::parse($content, Yaml::PARSE_OBJECT_FOR_MAP);
+    switch ($extension) {
+        case EXTENSION_JSON:
+            return json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+        case EXTENSION_YAML:
+            return Yaml::parse($content, Yaml::PARSE_OBJECT_FOR_MAP);
     }
-    throw new \InvalidArgumentException("Format '{$format}' is not supports");
+    throw new \InvalidArgumentException("File extension '{$extension}' is not supports");
+}
+
+function parseFile(string $filePath)
+{
+    $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
+    $fileContent = file_get_contents($filePath);
+    return parseData($fileContent, $fileExtension);
 }

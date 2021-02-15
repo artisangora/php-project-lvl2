@@ -35,7 +35,7 @@ class DiffGeneratorTest extends TestCase
         yield 'yaml' => [
             'path1'  => __DIR__ . '/fixtures/file1.yml',
             'path2'  => __DIR__ . '/fixtures/file2.yml',
-            'format' => 'yaml'
+            'format' => 'json'
         ];
         yield 'stylish' => [
             'path1'  => __DIR__ . '/fixtures/stylish1.yml',
