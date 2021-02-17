@@ -13,13 +13,13 @@ const EXTENSION_YAML = 'yml';
  * @return mixed
  * @throws \JsonException
  */
-function parseData(string $content, string $extension)
+function parseData(string $content, string $extension): array
 {
     switch ($extension) {
         case EXTENSION_JSON:
-            return json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+            return (array)json_decode($content, false, 512, JSON_THROW_ON_ERROR);
         case EXTENSION_YAML:
-            return Yaml::parse($content, Yaml::PARSE_OBJECT_FOR_MAP);
+            return (array)Yaml::parse($content, Yaml::PARSE_OBJECT_FOR_MAP);
     }
     throw new \InvalidArgumentException("File extension '{$extension}' is not supports");
 }

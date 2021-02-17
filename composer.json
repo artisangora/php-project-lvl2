@@ -22,7 +22,7 @@
         "files": [
             "src/Cli.php",
             "src/DiffGenerator.php",
-            "src/Formatter.php",
+            "src/Formatters.php",
             "src/Parsers.php"
         ]
     },

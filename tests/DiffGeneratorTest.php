@@ -27,6 +27,11 @@ class DiffGeneratorTest extends TestCase
 
     public function filesProvider(): iterable
     {
+        yield 'stylish' => [
+            'path1'  => __DIR__ . '/fixtures/stylish1.yml',
+            'path2'  => __DIR__ . '/fixtures/stylish2.yml',
+            'format' => 'stylish'
+        ];
         yield 'json' => [
             'path1'  => __DIR__ . '/fixtures/file1.json',
             'path2'  => __DIR__ . '/fixtures/file2.json',
@@ -36,11 +41,6 @@ class DiffGeneratorTest extends TestCase
             'path1'  => __DIR__ . '/fixtures/file1.yml',
             'path2'  => __DIR__ . '/fixtures/file2.yml',
             'format' => 'json'
-        ];
-        yield 'stylish' => [
-            'path1'  => __DIR__ . '/fixtures/stylish1.yml',
-            'path2'  => __DIR__ . '/fixtures/stylish2.yml',
-            'format' => 'stylish'
         ];
     }
 }
