@@ -4,11 +4,11 @@ namespace Differ\Formatters\Stylish;
 
 use function Funct\Strings\strip;
 
-use const Differ\DiffGenerator\TYPE_ADD;
-use const Differ\DiffGenerator\TYPE_EQUAL;
-use const Differ\DiffGenerator\TYPE_NODE;
-use const Differ\DiffGenerator\TYPE_REMOVE;
-use const Differ\DiffGenerator\TYPE_UPDATE;
+use const Differ\Differ\TYPE_ADD;
+use const Differ\Differ\TYPE_EQUAL;
+use const Differ\Differ\TYPE_NODE;
+use const Differ\Differ\TYPE_REMOVE;
+use const Differ\Differ\TYPE_UPDATE;
 
 function formatStylish(array $diff, int $depth = 1): string
 {

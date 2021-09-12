@@ -4,11 +4,11 @@ namespace Differ\Formatters\Plain;
 
 use function Funct\Strings\len;
 
-use const Differ\DiffGenerator\TYPE_ADD;
-use const Differ\DiffGenerator\TYPE_EQUAL;
-use const Differ\DiffGenerator\TYPE_NODE;
-use const Differ\DiffGenerator\TYPE_REMOVE;
-use const Differ\DiffGenerator\TYPE_UPDATE;
+use const Differ\Differ\TYPE_ADD;
+use const Differ\Differ\TYPE_EQUAL;
+use const Differ\Differ\TYPE_NODE;
+use const Differ\Differ\TYPE_REMOVE;
+use const Differ\Differ\TYPE_UPDATE;
 
 function formatPlain(array $diff, array $path = []): string
 {

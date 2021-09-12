@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\DiffGenerator;
+namespace Differ\Differ;
 
 use function Differ\Formatters\format;
 use function Differ\Parsers\parseFile;
