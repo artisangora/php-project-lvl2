@@ -5,7 +5,8 @@ namespace Differ\Parsers;
 use Symfony\Component\Yaml\Yaml;
 
 const EXTENSION_JSON = 'json';
-const EXTENSION_YAML = 'yml';
+const EXTENSION_YML = 'yml';
+const EXTENSION_YAML = 'yaml';
 
 /**
  * @param string $content
@@ -19,6 +20,8 @@ function parseData(string $content, string $extension): object
         case EXTENSION_JSON:
             return json_decode($content, false, 512, JSON_THROW_ON_ERROR);
         case EXTENSION_YAML:
+            return Yaml::parse($content, Yaml::PARSE_OBJECT_FOR_MAP);
+        case EXTENSION_YML:
             return Yaml::parse($content, Yaml::PARSE_OBJECT_FOR_MAP);
     }
     throw new \InvalidArgumentException("File extension '{$extension}' is not supports");

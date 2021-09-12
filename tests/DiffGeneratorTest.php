@@ -40,9 +40,15 @@ class DiffGeneratorTest extends TestCase
             'resultPath'  => __DIR__ . '/fixtures/resultPlain.txt',
             'format' => 'plain'
         ];
-        yield 'json' => [
+        yield 'json from yml' => [
             'path1'  => __DIR__ . '/fixtures/file1.yml',
             'path2'  => __DIR__ . '/fixtures/file2.yml',
+            'resultPath'  => __DIR__ . '/fixtures/resultJson.txt',
+            'format' => 'json'
+        ];
+        yield 'json from yaml' => [
+            'path1'  => __DIR__ . '/fixtures/file1.yaml',
+            'path2'  => __DIR__ . '/fixtures/file2.yaml',
             'resultPath'  => __DIR__ . '/fixtures/resultJson.txt',
             'format' => 'json'
         ];
