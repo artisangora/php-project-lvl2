@@ -2,8 +2,6 @@
 
 namespace Differ\Formatters\Stylish;
 
-use function Funct\Strings\strip;
-
 use const Differ\Differ\TYPE_ADD;
 use const Differ\Differ\TYPE_EQUAL;
 use const Differ\Differ\TYPE_NODE;
@@ -63,7 +61,7 @@ function formatStylish(array $diff, int $depth = 1): string
     return "{\n" . implode("\n", $result) . "\n" . getIndent($depth, 4) . "}";
 }
 
-function prepareValue($value, int $depth): string
+function prepareValue(mixed $value, int $depth): string
 {
     if (is_object($value)) {
         $keys = array_keys(get_object_vars($value));
@@ -90,13 +88,13 @@ function prepareValue($value, int $depth): string
     }
 
     if (is_numeric($value)) {
-        return $value;
+        return (string) $value;
     }
 
     return $value;
 }
 
-function getIndent(int $depth, $symbolsCount = 2): string
+function getIndent(int $depth, int $symbolsCount = 2): string
 {
     return str_repeat(' ', $depth * 4 - $symbolsCount);
 }

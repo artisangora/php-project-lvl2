@@ -8,15 +8,15 @@ use const Differ\Differ\TYPE_NODE;
 use const Differ\Differ\TYPE_REMOVE;
 use const Differ\Differ\TYPE_UPDATE;
 
-function formatPlain(array $diff, array $path = []): string
+function formatPlain(array $diff, string $path = ''): string
 {
-    $result = array_map(fn(array $diffRow) => formatRow($diffRow, $path), $diff);
-    $result = array_filter($result, fn($row) => strlen($row) > 0);
+    $formattedDiff = array_map(fn(array $diffRow) => formatRow($diffRow, $path), $diff);
+    $result = array_filter($formattedDiff, fn($row) => strlen($row) > 0);
 
     return implode("\n", $result);
 }
 
-function formatRow(array $diffRow, array $path): string
+function formatRow(array $diffRow, string $path): string
 {
     switch ($diffRow['type']) {
         case TYPE_ADD:
@@ -40,21 +40,18 @@ function formatRow(array $diffRow, array $path): string
         case TYPE_EQUAL:
             return '';
         case TYPE_NODE:
-            $path[] = $diffRow['key'];
-            return formatPlain($diffRow['children'], $path);
+            return formatPlain($diffRow['children'], prepareKey($path, $diffRow['key']));
         default:
             throw new \InvalidArgumentException("Type '{$diffRow['type']}' is not supports");
     }
 }
 
-function prepareKey(array $path, string $key): string
+function prepareKey(string $path, string $key): string
 {
-    $path[] = $key;
-    return implode('.', $path);
+    return $path === '' ? $key : "{$path}.{$key}";
 }
 
-
-function prepareValue($value): string
+function prepareValue(mixed $value): string
 {
     if (is_object($value)) {
         return '[complex value]';
@@ -69,7 +66,7 @@ function prepareValue($value): string
     }
 
     if (is_numeric($value)) {
-        return $value;
+        return (string)$value;
     }
 
     return "'{$value}'";
