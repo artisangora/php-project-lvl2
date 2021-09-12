@@ -2,9 +2,7 @@
 
 namespace Differ\Formatters\Json;
 
-function formatJson(array $diff): string //todo
+function formatJson(array $diff): string
 {
-    $result = array_map(static fn(array $row): string => formatDiffRow($row), $diff);
-
-    return "{\n" . implode("\n", $result) . "\n}";
+    return json_encode($diff, JSON_THROW_ON_ERROR);
 }

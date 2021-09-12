@@ -31,9 +31,11 @@ function diff(object $data1, object $data2): array
         )
     );
 
-    $keys = sortBy($keys, fn ($value) => $value);
+    $keys = array_values(
+        sortBy($keys, fn ($value) => $value)
+    );
 
-    $diff = array_map(function ($key) use ($data1, $data2) {
+    return array_map(function ($key) use ($data1, $data2) {
         if (!property_exists($data1, $key)) {
             return [
                 'type' => TYPE_ADD,
@@ -82,6 +84,4 @@ function diff(object $data1, object $data2): array
             'children' => null
         ];
     }, $keys);
-
-    return $diff;
 }
