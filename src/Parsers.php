@@ -31,7 +31,7 @@ function parseFile(string $filePath): object
 {
     $fileExtension = pathinfo($filePath, PATHINFO_EXTENSION);
     $fileContent = file_get_contents($filePath);
-    if (!$fileContent) {
+    if ($fileContent === false) {
         throw new \LogicException('Cannot read file');
     }
     return parseData($fileContent, $fileExtension);

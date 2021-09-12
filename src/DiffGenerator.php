@@ -24,7 +24,7 @@ function genDiff(string $pathToFile1, string $pathToFile2, string $format = 'sty
 
 function diff(object $data1, object $data2): array
 {
-    $keys = array_unique(
+    $uniqueKeys = array_unique(
         array_merge(
             array_keys(get_object_vars($data1)),
             array_keys(get_object_vars($data2))
@@ -32,7 +32,7 @@ function diff(object $data1, object $data2): array
     );
 
     $keys = array_values(
-        fSort($keys, fn ($a, $b) => strcmp($a, $b))
+        fSort($uniqueKeys, fn ($a, $b) => strcmp($a, $b))
     );
 
     return array_map(function ($key) use ($data1, $data2): array {
