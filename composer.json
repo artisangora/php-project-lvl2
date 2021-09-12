@@ -3,7 +3,7 @@
     "license": "GPL-3.0-only",
     "type": "project",
     "description": "Hexlet project #2",
-    "minimum-stability": "dev-master",
+    "minimum-stability": "dev",
     "require": {
         "php": "^7.4|^8.0",
         "docopt/docopt": "^1.0",
