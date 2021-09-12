@@ -70,5 +70,9 @@ function prepareValue($value): string
         return 'null';
     }
 
+    if (is_numeric($value)) {
+        return $value;
+    }
+
     return "'{$value}'";
 }
