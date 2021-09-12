@@ -2,8 +2,6 @@
 
 namespace Differ\Formatters\Plain;
 
-use function Funct\Strings\len;
-
 use const Differ\Differ\TYPE_ADD;
 use const Differ\Differ\TYPE_EQUAL;
 use const Differ\Differ\TYPE_NODE;
@@ -13,7 +11,7 @@ use const Differ\Differ\TYPE_UPDATE;
 function formatPlain(array $diff, array $path = []): string
 {
     $result = array_map(fn(array $diffRow) => formatRow($diffRow, $path), $diff);
-    $result = array_filter($result, fn($row) => len($row) > 0);
+    $result = array_filter($result, fn($row) => strlen($row) > 0);
 
     return implode("\n", $result);
 }

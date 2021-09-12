@@ -81,8 +81,19 @@ function prepareValue($value, int $depth): string
         return "{\n{$result}\n{$indent}}";
     }
 
+    if (is_bool($value)) {
+        return $value ? 'true' : 'false';
+    }
 
-    return strip(json_encode($value), '"');
+    if (is_null($value)) {
+        return 'null';
+    }
+
+    if (is_numeric($value)) {
+        return $value;
+    }
+
+    return $value;
 }
 
 function getIndent(int $depth, $symbolsCount = 2): string

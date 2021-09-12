@@ -4,7 +4,7 @@ namespace Differ\Differ;
 
 use function Differ\Formatters\format;
 use function Differ\Parsers\parseFile;
-use function Funct\Collection\sortBy;
+use function Functional\sort;
 
 const TYPE_ADD = 'add';
 const TYPE_REMOVE = 'remove';
@@ -32,7 +32,7 @@ function diff(object $data1, object $data2): array
     );
 
     $keys = array_values(
-        sortBy($keys, fn ($value) => $value)
+        sort($keys, fn ($a, $b) => strcmp($a, $b))
     );
 
     return array_map(function ($key) use ($data1, $data2) {
